@@ -1,12 +1,21 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/ping', function (req, res) {
-    console.log('hit route "ping"');
-    return res.send('pong');
+
+const {variations} = require('./server-data.js');
+
+const getRandom = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+app.get('/roll', function (req, res) {
+    let index = getRandom(0, variations.length);
+    console.log('rolling dice with value ', index);
+    return res.send(variations[index]);
 });
 
 app.get('/', function (req, res) {
