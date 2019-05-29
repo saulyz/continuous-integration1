@@ -1,18 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './dice.svg';
 import './App.css';
 
-const initialMessage = 'No queries have initiated';
-
 function App() {
+  const [message, setMessage] = useState(
+    'No queries have initiated'
+  );
+  const [status, setStatus] = useState(
+    'default'
+  );
+
+  const handleClick = () => {
+    setStatus('processing');
+    fetch('/roll')
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        setMessage(response.message);
+        if (response.result) {
+          setStatus('success');
+        } else {
+          setStatus('failure');
+        }
+      })
+      .catch(() => {
+        setMessage('API is not responding. Please try next time.');
+      })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {initialMessage}
+        <p className={`message ${status}`}>
+          {message}
         </p>
-        <button className="button">Fetch results</button>
+        <button className="button" onClick={handleClick}>
+          Fetch results
+        </button>
       </header>
     </div>
   );
