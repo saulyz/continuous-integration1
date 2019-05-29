@@ -17,6 +17,7 @@
   },
   "name": "continuous-integration1",
   "scripts": {
+    "deploy": "npm run build"
   },
   "stack": "heroku-18"
 }
