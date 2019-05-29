@@ -33,18 +33,18 @@
   font-size: calc(10px + 1vmin);
   font-weight: bold;
   color: white;
-  background: #4288b9;
-  border: 2px solid #4288b9;
+  background: #538E6D;
+  border: 2px solid #538E6D;
   border-radius: 3px;
   cursor: pointer;
 }
 
 .button:hover {
-  background: #356D94;
+  background: #4a7f62;
 }
 
 .button:active {
-  background: #2A5776;
+  background: #427157;
 }
 
 .message {
