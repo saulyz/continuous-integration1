@@ -18,10 +18,20 @@ app.get('/api', function (req, res) {
     return res.send(variations[index]);
 });
 
-app.get('/', function (req, res) {
-    console.log('serving index.html');
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("build"));
+    app.get("*", (req, res) => 
+        res.sendFile(path.resolve("build", "index.html"))
+    );
+} else {
+    // development mode
+    app.use(express.static("public"));
+    app.get("*", (req, res) => {
+        console.log('(development) serving index.html');
+        res.sendFile(path.resolve("public", "index.html"));
+    });
+}
 
 const port = process.env.PORT || 8080;
 app.listen(port, (req, res) => {
