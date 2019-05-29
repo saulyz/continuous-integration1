@@ -12,7 +12,7 @@ function App() {
 
   const handleClick = () => {
     setStatus('processing');
-    fetch('/roll')
+    fetch('/api')
       .then((response) => response.json())
       .then((response) => {
         console.log(response);

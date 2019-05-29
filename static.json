@@ -1,7 +1,7 @@
 {
     "root": "build/",
     "proxies": {
-      "/roll": {
+      "/api": {
         "origin": "https://serene-lake-26689.herokuapp.com"
       }
     }

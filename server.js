@@ -12,7 +12,7 @@ const getRandom = (min, max) => {
 }
 
 
-app.get('/roll', function (req, res) {
+app.get('/api', function (req, res) {
     let index = getRandom(0, variations.length);
     console.log('rolling dice with value ', index);
     return res.send(variations[index]);
